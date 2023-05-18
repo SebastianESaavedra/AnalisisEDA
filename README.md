@@ -204,7 +204,6 @@ plt.legend(bbox_to_anchor=(1, 1), loc=2, borderaxespad=0)
 
 
 
-    <matplotlib.legend.Legend at 0x7ff74bdde710>
 
 
 
@@ -229,7 +228,6 @@ plt.legend(bbox_to_anchor=(1, 1), loc=2, borderaxespad=0)
 
 
 
-    <matplotlib.legend.Legend at 0x7ff750d40160>
 
 
 
@@ -251,7 +249,6 @@ plt.legend(bbox_to_anchor=(1, 1), loc=2, borderaxespad=0)
 
 
 
-    <matplotlib.legend.Legend at 0x7ff74acb2a70>
 
 
 
@@ -316,30 +313,12 @@ Podemos calcular la matriz de correlación utilizando la función `corr` de pand
 df.corr()
 ```
 
-    <ipython-input-79-2f6f6606aa2c>:1: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
-      df.corr()
+    
     
 
 
 
 
-
-  <div id="df-2c590446-58d0-42b6-a976-2be2b54e829a">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -519,50 +498,10 @@ df.corr()
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
+ 
       </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
+  
 
       <script>
         const buttonEl =
@@ -817,9 +756,6 @@ sns.pairplot(df_neuquina, hue='anio',palette='viridis')
 
 
 
-    <seaborn.axisgrid.PairGrid at 0x7ff7490ff490>
-
-
 
 
     
@@ -869,15 +805,7 @@ corr = df.corr()
 sns.heatmap(corr, annot=True, cmap='coolwarm')
 ```
 
-    <ipython-input-78-d9e97c3d970a>:2: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
-      corr = df.corr()
-    
-
-
-
-
-    <Axes: >
-
+   
 
 
 
