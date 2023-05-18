@@ -43,30 +43,21 @@ df_sanjorge= df[df.cuenca.isin(['GOLFO SAN JORGE'])]
 # Exploración general del conjunto de datos
 
 
-
-# Shape y Types
-Utilizar el método `shape` nos dá un preview del tamaño del dataset mientras que el método `dtypes` nos permite entender con que tipo de datos estámos lidiando:
-
-
-```python
-df.shape
-```
-
-
-
-
-    (24729, 25)
-
-
+## Explorando el conjunto de datos
+Ahora, podemos comenzar a explorar el conjunto de datos utilizando las funciones que hemos discutido anteriormente:
 
 
 ```python
-df.dtypes
+# Explorando el conjunto de datos
+print(df.shape)
+print(df.dtypes)
+print(df.head())
+print(df.info())
+print(df.describe())
+print(df.isnull().sum())
 ```
 
-
-
-
+    (60447, 25)
     idempresa                  object
     anio                        int64
     mes                         int64
@@ -93,64 +84,104 @@ df.dtypes
     provincia                  object
     fecha_data                 object
     dtype: object
-
-
-
-
-
-
-## Información de las columnas
-Podemos obtener información sobre las columnas en el conjunto de datos utilizando la función `info` de pandas:
-
-
-```python
-df.info()
-```
-
+         idempresa  anio  mes  prod_pet  prod_gas  prod_agua  iny_agua  iny_gas  \
+    1411      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
+    1412      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
+    1413      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
+    1414      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
+    1415      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
+    
+          iny_co2  iny_ptros  ...  idareapermisoconcesion  \
+    1411      0.0        0.0  ...                     ABO   
+    1412      0.0        0.0  ...                     ABO   
+    1413      0.0        0.0  ...                     AGR   
+    1414      0.0        0.0  ...                    BLLO   
+    1415      0.0        0.0  ...                    Z042   
+    
+                       areapermisoconcesion idareayacimiento  \
+    1411  BLANCO DE LOS OLIVOS - BLOQUE "A"              ABO   
+    1412  BLANCO DE LOS OLIVOS - BLOQUE "A"              ABO   
+    1413                      GENERAL ROCA               AGR   
+    1414                    PUESTO SURVELIN             PUSU   
+    1415                           DON JOSE             Z122   
+    
+                           areayacimiento tipo_de_recurso      proyecto  \
+    1411  BLANCO DE LOS OLIVOS-BLOQUE "A"    CONVENCIONAL  Sin Proyecto   
+    1412  BLANCO DE LOS OLIVOS-BLOQUE "A"    CONVENCIONAL  Sin Proyecto   
+    1413                     GENERAL ROCA    CONVENCIONAL  Sin Proyecto   
+    1414                  PUESTO SURVELIN    CONVENCIONAL  Sin Proyecto   
+    1415                         DON JOSE    CONVENCIONAL  Sin Proyecto   
+    
+         sub_tipo_recurso    cuenca  provincia  fecha_data  
+    1411              NaN  NEUQUINA  Rio Negro  2020-01-31  
+    1412              NaN  NEUQUINA  Rio Negro  2020-01-31  
+    1413              NaN  NEUQUINA  Rio Negro  2020-01-31  
+    1414              NaN  NEUQUINA  Rio Negro  2020-01-31  
+    1415              NaN  NEUQUINA  Rio Negro  2020-01-31  
+    
+    [5 rows x 25 columns]
     <class 'pandas.core.frame.DataFrame'>
-    Int64Index: 24729 entries, 135797 to 556095
+    Int64Index: 60447 entries, 1411 to 556095
     Data columns (total 25 columns):
      #   Column                  Non-Null Count  Dtype  
     ---  ------                  --------------  -----  
-     0   idempresa               24729 non-null  object 
-     1   anio                    24729 non-null  int64  
-     2   mes                     24729 non-null  int64  
-     3   prod_pet                24729 non-null  float64
-     4   prod_gas                24729 non-null  float64
-     5   prod_agua               24729 non-null  float64
-     6   iny_agua                24729 non-null  float64
-     7   iny_gas                 24729 non-null  float64
-     8   iny_co2                 24729 non-null  float64
-     9   iny_ptros               24729 non-null  float64
-     10  tef                     24729 non-null  float64
-     11  vida_util               2657 non-null   float64
-     12  empresa                 24729 non-null  object 
-     13  formprod                24537 non-null  object 
-     14  formacion               24273 non-null  object 
-     15  idareapermisoconcesion  24681 non-null  object 
-     16  areapermisoconcesion    24681 non-null  object 
-     17  idareayacimiento        24729 non-null  object 
-     18  areayacimiento          24729 non-null  object 
-     19  tipo_de_recurso         24729 non-null  object 
-     20  proyecto                24729 non-null  object 
-     21  sub_tipo_recurso        255 non-null    object 
-     22  cuenca                  24729 non-null  object 
-     23  provincia               24729 non-null  object 
-     24  fecha_data              24729 non-null  object 
+     0   idempresa               60447 non-null  object 
+     1   anio                    60447 non-null  int64  
+     2   mes                     60447 non-null  int64  
+     3   prod_pet                60447 non-null  float64
+     4   prod_gas                60447 non-null  float64
+     5   prod_agua               60447 non-null  float64
+     6   iny_agua                60447 non-null  float64
+     7   iny_gas                 60447 non-null  float64
+     8   iny_co2                 60447 non-null  float64
+     9   iny_ptros               60447 non-null  float64
+     10  tef                     60447 non-null  float64
+     11  vida_util               9126 non-null   float64
+     12  empresa                 60447 non-null  object 
+     13  formprod                59919 non-null  object 
+     14  formacion               59584 non-null  object 
+     15  idareapermisoconcesion  60399 non-null  object 
+     16  areapermisoconcesion    60399 non-null  object 
+     17  idareayacimiento        60447 non-null  object 
+     18  areayacimiento          60447 non-null  object 
+     19  tipo_de_recurso         60447 non-null  object 
+     20  proyecto                60447 non-null  object 
+     21  sub_tipo_recurso        4634 non-null   object 
+     22  cuenca                  60447 non-null  object 
+     23  provincia               60447 non-null  object 
+     24  fecha_data              60447 non-null  object 
     dtypes: float64(9), int64(2), object(14)
-    memory usage: 4.9+ MB
+    memory usage: 12.0+ MB
+    None
+                   anio           mes       prod_pet       prod_gas     prod_agua  \
+    count  60447.000000  60447.000000   60447.000000   60447.000000  6.044700e+04   
+    mean    2021.009215      6.501282    1002.175340    1140.890549  1.114784e+04   
+    std        0.999966      3.452457    6931.598021   11208.061105  6.368836e+04   
+    min     2020.000000      1.000000       0.000000       0.000000 -4.260000e+00   
+    25%     2020.000000      4.000000       0.000000       0.000000  0.000000e+00   
+    50%     2022.000000      7.000000       0.000000       0.000000  0.000000e+00   
+    75%     2022.000000      9.000000      94.129716      44.860000  4.245833e+02   
+    max     2022.000000     12.000000  251981.040000  565742.416880  1.058743e+06   
     
-
-Esto nos dará información sobre el número de valores no nulos en cada columna y el tipo de datos de cada columna.
-
-
-```python
-df.isnull().sum()
-```
-
-
-
-
+               iny_agua       iny_gas  iny_co2     iny_ptros           tef  \
+    count  6.044700e+04  60447.000000  60447.0  60447.000000  60447.000000   
+    mean   1.137200e+04      1.922774      0.0     27.580212    331.770791   
+    std    6.849562e+04    142.169680      0.0   1089.158120   1641.293023   
+    min    0.000000e+00      0.000000      0.0      0.000000      0.000000   
+    25%    0.000000e+00      0.000000      0.0      0.000000      0.000000   
+    50%    0.000000e+00      0.000000      0.0      0.000000      0.000000   
+    75%    0.000000e+00      0.000000      0.0      0.000000     90.000000   
+    max    1.364515e+06  28878.550000      0.0  74310.400000  47752.100000   
+    
+             vida_util  
+    count  9126.000000  
+    mean      0.503616  
+    std      13.879929  
+    min       0.000000  
+    25%       0.000000  
+    50%       0.000000  
+    75%       0.000000  
+    max     383.000000  
     idempresa                     0
     anio                          0
     mes                           0
@@ -162,24 +193,24 @@ df.isnull().sum()
     iny_co2                       0
     iny_ptros                     0
     tef                           0
-    vida_util                 22072
+    vida_util                 51321
     empresa                       0
-    formprod                    192
-    formacion                   456
+    formprod                    528
+    formacion                   863
     idareapermisoconcesion       48
     areapermisoconcesion         48
     idareayacimiento              0
     areayacimiento                0
     tipo_de_recurso               0
     proyecto                      0
-    sub_tipo_recurso          24474
+    sub_tipo_recurso          55813
     cuenca                        0
     provincia                     0
     fecha_data                    0
     dtype: int64
+    
 
-
-
+Esto nos dará una idea general del conjunto de datos. Se destaca la funcion para conocer el tipo de datos de cada una de las columnas. 
 Se observa que las columnas emporesa, formprod, formacion, idareapermisoconcesion,  areapermisoconcesion y sub_tipo_recurso presentan nulos.
 
 
@@ -285,6 +316,43 @@ plt.show()
 
 Esto nos dará un diagrama de barras de la distribución de la variable "tipo_de_recurso" en el conjunto de datos. Podemos ver que el número de observaciones es mayor del tipo Convencional.
 
+
+
+
+```python
+a1=sns.displot(df, x='provincia',kde=True)
+labels = a1.ax.get_xticklabels()
+a1.set_xticklabels(labels,rotation=45)
+plt.show()
+```
+
+
+    
+![png](output_53_0.png)
+    
+
+
+La provincia dentro de las tres cuencas en tener más registros es Neuquén.
+
+
+
+```python
+order = df_neuquina['formacion'].sort_values().unique()
+ax=sns.countplot(x='formacion', data=df_neuquina, palette='viridis', order=order)
+ax.set_xticklabels(ax.get_xticklabels(),rotation=90)
+plt.show()
+```
+
+
+    
+![png](output_55_0.png)
+    
+
+
+El mayor conteo de registros es cuando una formación no es productiva (no se extrajo petroleo). Entre las formaciones más destacadas se encuentran: Vaca Muerta, Agrio, Quintuco, Centenario, teniendo en cuenta solo a datos de la cuenca neuquina.
+
+
+
 # Histograma (histogram)
 Un histograma es una forma común de visualizar la distribución de una variable numérica. seaborn hace que sea fácil crear un histograma utilizando la función `histplot`:
 
@@ -307,6 +375,9 @@ sns.histplot(x="iny_agua", bins =5, data=df)
 
 
 La distribución de inyección de agua está mayoritariamente entre 0 y 0.25 aproximadamente.
+
+
+
 
 # Análisis de correlación
 El análisis de correlación es una parte importante del EDA, ya que nos permite ver la relación entre las variables numéricas en el conjunto de datos. Una forma común de analizar la correlación es mediante el cálculo de la matriz de correlación y la visualización de la misma mediante un mapa de calor.
@@ -505,35 +576,7 @@ df.corr()
               style="display:none;">
 
  
-      </button>
-
-  
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-2c590446-58d0-42b6-a976-2be2b54e829a button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-2c590446-58d0-42b6-a976-2be2b54e829a');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
+    
   </div>
 
 
@@ -549,14 +592,10 @@ Podemos visualizar la matriz de correlación utilizando un mapa de calor. seabor
 sns.heatmap(df.corr())
 ```
 
-    <ipython-input-68-aa4f4450a243>:1: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
-      sns.heatmap(df.corr())
+    
     
 
 
-
-
-    <Axes: >
 
 
 
@@ -568,238 +607,6 @@ sns.heatmap(df.corr())
 
 Esto nos dará un mapa de calor que muestra la correlación entre todas las variables numéricas en el conjunto de datos. Los valores más oscuros indican una correlación más fuerte, mientras que los valores más claros indican una correlación más débil.
 
-# Ejemplo de Análisis Exploratorio de Datos
-A continuación, utilizaremos el conjunto de datos iris incluido en scikit-learn para realizar un ejemplo de Análisis Exploratorio de Datos.
-
-## Importando librerías y cargando el conjunto de datos
-Comenzamos importando las librerías necesarias y cargando el conjunto de datos:
-
-
-```python
-
-```
-
-En este ejemplo, utilizamos `load_iris` de scikit-learn para cargar el conjunto de datos `iris`. Luego, creamos un objeto `DataFrame` de pandas con los datos y agregamos una columna para el objetivo (target) del conjunto de datos.
-
-## Explorando el conjunto de datos
-Ahora, podemos comenzar a explorar el conjunto de datos utilizando las funciones que hemos discutido anteriormente:
-
-
-```python
-# Explorando el conjunto de datos
-print(df.shape)
-print(df.dtypes)
-print(df.head())
-print(df.info())
-print(df.describe())
-print(df.isnull().sum())
-```
-
-    (60447, 25)
-    idempresa                  object
-    anio                        int64
-    mes                         int64
-    prod_pet                  float64
-    prod_gas                  float64
-    prod_agua                 float64
-    iny_agua                  float64
-    iny_gas                   float64
-    iny_co2                   float64
-    iny_ptros                 float64
-    tef                       float64
-    vida_util                 float64
-    empresa                    object
-    formprod                   object
-    formacion                  object
-    idareapermisoconcesion     object
-    areapermisoconcesion       object
-    idareayacimiento           object
-    areayacimiento             object
-    tipo_de_recurso            object
-    proyecto                   object
-    sub_tipo_recurso           object
-    cuenca                     object
-    provincia                  object
-    fecha_data                 object
-    dtype: object
-         idempresa  anio  mes  prod_pet  prod_gas  prod_agua  iny_agua  iny_gas  \
-    1411      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
-    1412      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
-    1413      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
-    1414      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
-    1415      Z001  2020    1       0.0       0.0        0.0       0.0      0.0   
-    
-          iny_co2  iny_ptros  ...  idareapermisoconcesion  \
-    1411      0.0        0.0  ...                     ABO   
-    1412      0.0        0.0  ...                     ABO   
-    1413      0.0        0.0  ...                     AGR   
-    1414      0.0        0.0  ...                    BLLO   
-    1415      0.0        0.0  ...                    Z042   
-    
-                       areapermisoconcesion idareayacimiento  \
-    1411  BLANCO DE LOS OLIVOS - BLOQUE "A"              ABO   
-    1412  BLANCO DE LOS OLIVOS - BLOQUE "A"              ABO   
-    1413                      GENERAL ROCA               AGR   
-    1414                    PUESTO SURVELIN             PUSU   
-    1415                           DON JOSE             Z122   
-    
-                           areayacimiento tipo_de_recurso      proyecto  \
-    1411  BLANCO DE LOS OLIVOS-BLOQUE "A"    CONVENCIONAL  Sin Proyecto   
-    1412  BLANCO DE LOS OLIVOS-BLOQUE "A"    CONVENCIONAL  Sin Proyecto   
-    1413                     GENERAL ROCA    CONVENCIONAL  Sin Proyecto   
-    1414                  PUESTO SURVELIN    CONVENCIONAL  Sin Proyecto   
-    1415                         DON JOSE    CONVENCIONAL  Sin Proyecto   
-    
-         sub_tipo_recurso    cuenca  provincia  fecha_data  
-    1411              NaN  NEUQUINA  Rio Negro  2020-01-31  
-    1412              NaN  NEUQUINA  Rio Negro  2020-01-31  
-    1413              NaN  NEUQUINA  Rio Negro  2020-01-31  
-    1414              NaN  NEUQUINA  Rio Negro  2020-01-31  
-    1415              NaN  NEUQUINA  Rio Negro  2020-01-31  
-    
-    [5 rows x 25 columns]
-    <class 'pandas.core.frame.DataFrame'>
-    Int64Index: 60447 entries, 1411 to 556095
-    Data columns (total 25 columns):
-     #   Column                  Non-Null Count  Dtype  
-    ---  ------                  --------------  -----  
-     0   idempresa               60447 non-null  object 
-     1   anio                    60447 non-null  int64  
-     2   mes                     60447 non-null  int64  
-     3   prod_pet                60447 non-null  float64
-     4   prod_gas                60447 non-null  float64
-     5   prod_agua               60447 non-null  float64
-     6   iny_agua                60447 non-null  float64
-     7   iny_gas                 60447 non-null  float64
-     8   iny_co2                 60447 non-null  float64
-     9   iny_ptros               60447 non-null  float64
-     10  tef                     60447 non-null  float64
-     11  vida_util               9126 non-null   float64
-     12  empresa                 60447 non-null  object 
-     13  formprod                59919 non-null  object 
-     14  formacion               59584 non-null  object 
-     15  idareapermisoconcesion  60399 non-null  object 
-     16  areapermisoconcesion    60399 non-null  object 
-     17  idareayacimiento        60447 non-null  object 
-     18  areayacimiento          60447 non-null  object 
-     19  tipo_de_recurso         60447 non-null  object 
-     20  proyecto                60447 non-null  object 
-     21  sub_tipo_recurso        4634 non-null   object 
-     22  cuenca                  60447 non-null  object 
-     23  provincia               60447 non-null  object 
-     24  fecha_data              60447 non-null  object 
-    dtypes: float64(9), int64(2), object(14)
-    memory usage: 12.0+ MB
-    None
-                   anio           mes       prod_pet       prod_gas     prod_agua  \
-    count  60447.000000  60447.000000   60447.000000   60447.000000  6.044700e+04   
-    mean    2021.009215      6.501282    1002.175340    1140.890549  1.114784e+04   
-    std        0.999966      3.452457    6931.598021   11208.061105  6.368836e+04   
-    min     2020.000000      1.000000       0.000000       0.000000 -4.260000e+00   
-    25%     2020.000000      4.000000       0.000000       0.000000  0.000000e+00   
-    50%     2022.000000      7.000000       0.000000       0.000000  0.000000e+00   
-    75%     2022.000000      9.000000      94.129716      44.860000  4.245833e+02   
-    max     2022.000000     12.000000  251981.040000  565742.416880  1.058743e+06   
-    
-               iny_agua       iny_gas  iny_co2     iny_ptros           tef  \
-    count  6.044700e+04  60447.000000  60447.0  60447.000000  60447.000000   
-    mean   1.137200e+04      1.922774      0.0     27.580212    331.770791   
-    std    6.849562e+04    142.169680      0.0   1089.158120   1641.293023   
-    min    0.000000e+00      0.000000      0.0      0.000000      0.000000   
-    25%    0.000000e+00      0.000000      0.0      0.000000      0.000000   
-    50%    0.000000e+00      0.000000      0.0      0.000000      0.000000   
-    75%    0.000000e+00      0.000000      0.0      0.000000     90.000000   
-    max    1.364515e+06  28878.550000      0.0  74310.400000  47752.100000   
-    
-             vida_util  
-    count  9126.000000  
-    mean      0.503616  
-    std      13.879929  
-    min       0.000000  
-    25%       0.000000  
-    50%       0.000000  
-    75%       0.000000  
-    max     383.000000  
-    idempresa                     0
-    anio                          0
-    mes                           0
-    prod_pet                      0
-    prod_gas                      0
-    prod_agua                     0
-    iny_agua                      0
-    iny_gas                       0
-    iny_co2                       0
-    iny_ptros                     0
-    tef                           0
-    vida_util                 51321
-    empresa                       0
-    formprod                    528
-    formacion                   863
-    idareapermisoconcesion       48
-    areapermisoconcesion         48
-    idareayacimiento              0
-    areayacimiento                0
-    tipo_de_recurso               0
-    proyecto                      0
-    sub_tipo_recurso          55813
-    cuenca                        0
-    provincia                     0
-    fecha_data                    0
-    dtype: int64
-    
-
-Esto nos dará una idea general del conjunto de datos. Podemos ver que el conjunto de datos tiene 150 observaciones y 5 variables. No hay valores nulos en el conjunto de datos.
-
-## Visualizando los datos
-A continuación, podemos utilizar algunas de las visualizaciones discutidas anteriormente para explorar los datos:
-
-
-```python
-# Visualizando los datos
-sns.pairplot(df_neuquina, hue='anio',palette='viridis')
-```
-
-
-
-
-
-
-    
-![png](output_52_1.png)
-    
-
-
-
-```python
-a1=sns.displot(df, x='provincia',kde=True)
-labels = a1.ax.get_xticklabels()
-a1.set_xticklabels(labels,rotation=45)
-plt.show()
-```
-
-
-    
-![png](output_53_0.png)
-    
-
-
-La provincia dentro de las tres cuencas en tener más registros es Neuquén.
-
-
-```python
-order = df_neuquina['formacion'].sort_values().unique()
-ax=sns.countplot(x='formacion', data=df_neuquina, palette='viridis', order=order)
-ax.set_xticklabels(ax.get_xticklabels(),rotation=90)
-plt.show()
-```
-
-
-    
-![png](output_55_0.png)
-    
-
-
-El mayor conteo de registros es cuando una formación no es productiva (no se extrajo petroleo). Entre las formaciones más destacadas se encuentran: Vaca Muerta, Agrio, Quintuco, Centenario, teniendo en cuenta solo a datos de la cuenca neuquina.
 
 ## Análisis de correlación
 Finalmente, podemos utilizar `corr` de pandas y `heatmap` de seaborn para analizar la correlación entre las variables numéricas en el conjunto de datos:
@@ -822,3 +629,24 @@ sns.heatmap(corr, annot=True, cmap='coolwarm')
 
 Se observa una buena correlacion entre la inyección de agua y la producción de agua, probablemente porque parte de lo que se inyecta de agua termina siendo extraida con el tiempo. 
 La tasa efectiva (tef) tambien esta muy correlacionada a la producción e inyección de agua, esto puede ser debido a que al inyectar agua, se incrementa la producción de hidrocarburos y por eso, las cantidades medidas producidas se acercan más a las hipoteticamente calculadas (previstas a producir).
+
+
+## Visualizando y correlación general de los datos
+A continuación, aplicamos algunas de las visualizaciones discutidas anteriormente para explorar los datos:
+
+
+```python
+# Visualizando los datos
+sns.pairplot(df_neuquina, hue='anio',palette='viridis')
+```
+
+
+
+
+
+
+    
+![png](output_52_1.png)
+    
+
+
