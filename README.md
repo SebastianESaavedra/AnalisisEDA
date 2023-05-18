@@ -28,7 +28,7 @@ drive.mount('/content/drive')
 df_original = pd.read_csv('/content/drive/My Drive/Colab Notebooks/prod.csv')
 ```
 
-
+Creación de los dataframes:
 ```python
 df= df_original[df_original.anio.isin([2022,2020])]
 df= df[df.cuenca.isin(['NEUQUINA','CUYANA','GOLFO SAN JORGE'])]
@@ -193,7 +193,7 @@ La visualización de datos es una parte importante del EDA, ya que nos permite v
 ## Diagrama de dispersión (scatter plot)
 Una forma común de visualizar la relación entre dos variables numéricas es mediante un diagrama de dispersión. seaborn hace que sea fácil crear un diagrama de dispersión utilizando la función scatterplot:
 
-
+1) Scatter plot de producción de petroleo (y) vs inyección de agua (x) coloreado por cuenca y seccionado por tipo de recurso.
 ```python
 import matplotlib.pyplot as plt
 sns.scatterplot(x="iny_agua", y="prod_pet", data=df, hue='cuenca',style='tipo_de_recurso')
@@ -218,6 +218,9 @@ Los reservorios convencionales en cambio, muestran una correlación lineal entre
 Respecto a las tres cuencas visibles, se ve que la unica que posee reservorios NC es la Neuquina. El comportamiento de los registros de San Jorge son similares a los de la Neuquina, pero la cuenca Cuyana necesita mayores niveles de agua para poder extraer sus recursos.
 
 
+2) Scatter plot de producción de petroleo (y) vs inyección de agua (x) coloreado por formación y seccionado por tipo de recurso, pero solo para datos de la Cuenca Neuquina.
+
+
 ```python
 import matplotlib.pyplot as plt
 sns.scatterplot(x="iny_agua", y="prod_pet", data=df_neuquina, hue='formacion', style='tipo_de_recurso')
@@ -239,6 +242,9 @@ plt.legend(bbox_to_anchor=(1, 1), loc=2, borderaxespad=0)
 
 Pareceria que la unica formacion no convencional que se tiene registro en el dataset es Vaca Muerta. Las demas formaciones convencionales suelen seguir el patron lineal.
 
+
+
+3) Scatter plot de producción de petroleo (y) vs producción de gas (x) coloreado por formación y seccionado por tipo de recurso para datos de la Cuenca Neuquina.
 
 ```python
 import matplotlib.pyplot as plt
